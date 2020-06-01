@@ -45,7 +45,7 @@ const remove = (node) => {
  */
 const empty = (node) => {
   const arr = [];
-  let firstChild = node.firstChild;
+  let { firstChild } = node;
   while (firstChild) {
     arr.push(remove(node.firstChild));
     firstChild = node.firstChild;
@@ -62,52 +62,59 @@ const attr = (node, name, value) => {
   } else {
     return node.getAttribute(name);
   }
+  return value;
 };
 
 /*
  * 为节点添加文本或查看节点文本
  */
 const text = (node, string) => {
+  const element = node;
   if (!string) {
-    if ('innerText' in node) {
-      return node.innerText;
+    if ('innerText' in element) {
+      return element.innerText;
     }
-    return node.textContent;
+    return element.textContent;
   }
-  if ('innerText' in node) {
-    return node.innerText = string;
+  if ('innerText' in element) {
+    element.innerText = string;
+    return string;
   }
-  return node.textContent(string);
+  element.textContent = string;
+  return string;
 };
 
 /*
  * 修改或查看节点HTML
  */
 const html = (node, HTML) => {
+  const element = node;
   if (!HTML) {
-    return node.innerHTML;
+    return element.innerHTML;
   }
-  return node.innerHTML = HTML;
+  element.innerHTML = HTML;
+  return HTML;
 };
 
 /*
  * 修改或查看节点的style属性
  */
 const style = (node, name, value) => {
+  const element = node;
   if (!name) {
-    return node.style;
+    return element.style;
   }
   if (typeof name === 'string') {
     if (!value) {
-      return node.style[name];
-    } else {
-      return node.style[name] = value;
+      return element.style[name];
     }
+    element.style[name] = value;
+    return value;
   }
-  for (let key in name) {
-    if (name.hasOwnProperty(key)) {
-      node.style[key] = name[key];
-    }
+  const keys = name.keys();
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = name[keys[i]];
+    element.style[key] = name[key];
   }
   return name;
 };
@@ -151,7 +158,7 @@ const children = (node) => {
   return node.children;
 };
 const siblings = (node) => {
-  return Array.from(node.parentNode.children).filter(n => n !== node);
+  return Array.from(node.parentNode.children).filter((n) => n !== node);
 };
 const nextNode = (node) => {
   let x = node.nextSibling;
@@ -168,14 +175,14 @@ const prevNode = (node) => {
   return x;
 };
 const everyNode = (nodeList, fn) => {
-  for (let i = 0; i < nodeList.length; i++) {
+  for (let i = 0; i < nodeList.length; i += 1) {
     fn(nodeList[i]);
   }
 };
 const index = (node) => {
   const list = children(node.parentNode);
   let i;
-  for (i = 0; i < list.length; i++) {
+  for (i = 0; i < list.length; i += 1) {
     if (list[i] === node) {
       break;
     }
@@ -183,7 +190,7 @@ const index = (node) => {
   return i;
 };
 
-export const xu = {
+const xu = {
   create,
   after,
   before,
@@ -207,3 +214,5 @@ export const xu = {
   everyNode,
   index
 };
+
+export default xu;

@@ -2,7 +2,18 @@
 
 因为自带的 DOM 太难用（又臭又长还反人类），所以我自己封装了一份 DOM API 来使用。
 
+其中：
+
+1. dom.js 是简单的封装；
+2. xQuery.js 是类似 jQuery 的封装方法。
+
 包括以下方法：
+
+## xQuery.js
+
+**`$(selectorOrArray)`**
+
+## dom.js
 
 ### 1 增
 
@@ -97,28 +108,66 @@ console.log(xu.attr(div1, title)); // 查询 title 属性
 
 #### 3.2 `text(node, string)`
 
-#### 3.3 `html`
+查询或修改该节点的文本节点。
 
-#### 3.4 `style`
+#### 3.3 `html(node, HTML)`
+
+查询或修改该节点的HTML代码。
+
+#### 3.4 `style(node, name, value)`
+
+查询或修改该节点的style属性。
 
 #### 3.5 `classOperate`
 
+`add(node, className)`
+
+新增该节点的class属性。
+
+`remove(node, className)`
+
+移除该节点的class属性。
+
+`has(node, className)`
+
+判断改节点是否具有该class属性。
+
 #### 3.6 `on`
+
+新增该节点的事件监听。
 
 #### 3.7 `off`
 
-#### 3.8 `find`
+移除该节点的事件监听。
 
-#### 3.9 `parent`
+#### 3.8 `find(selector, node)`
 
-#### 3.10 `children`
+寻找 node 节点下的拥有 selector 选择器的节点。
 
-#### 3.11 `siblings`
+#### 3.9 `parent(node)`
 
-#### 3.12 `nextNode`
+找到 node 的父节点。
 
-#### 3.13 `prevNode`
+#### 3.10 `children(node)`
 
-#### 3.14 `everyNode`
+找到 node 的子节点。
 
-#### 3.15 `index`
+#### 3.11 `siblings(node)`
+
+找到 node 的兄弟节点（除了自己）。
+
+#### 3.12 `nextNode(node)`
+
+找到 node 的下一个节点。
+
+#### 3.13 `prevNode(node)`
+
+找到 node 的上一个节点。
+
+#### 3.14 `everyNode(node)`
+
+找到 node 的兄弟节点和 node 自己。
+
+#### 3.15 `index(node)`
+
+找到 node 的在兄弟节点中的位置。
