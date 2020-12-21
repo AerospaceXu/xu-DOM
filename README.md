@@ -1,17 +1,26 @@
 # xu-DOM
 
-因为自带的 DOM 太难用（又臭又长还反人类），所以我自己封装了一份 DOM API 来使用。
+仿 JQuery 的 DOM Api 封装。
 
 其中：
 
 1. dom.js 是简单的封装；
-2. xQuery.js 是类似 jQuery 的封装方法。
+2. xQuery.ts 是类似 jQuery 的封装方法。
 
 包括以下方法：
 
-## xQuery.js
+## xQuery.ts
 
-**`$(selectorOrArray)`**
+```js
+$('#app')
+  .find('.center')
+  .addClass('white')
+  .each((element, index) => {
+    console.log(element);
+  })
+  .parent()
+  .end()
+```
 
 ## dom.js
 

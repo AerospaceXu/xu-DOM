@@ -1,6 +1,3 @@
-/*
- * 创建一个或多个dom
- */
 const create = (HTML) => {
   const template = document.createElement('template');
   template.innerHTML = HTML.trim();
@@ -131,7 +128,7 @@ const classOperate = {
   },
   has(node, className) {
     return node.classList.contains(className);
-  }
+  },
 };
 
 /*
@@ -151,15 +148,10 @@ const find = (selector, node) => {
   const divs = (node || document).querySelectorAll(selector);
   return divs.length === 1 ? divs[0] : Array.from(divs);
 };
-const parent = (node) => {
-  return node.parentNode;
-};
-const children = (node) => {
-  return node.children;
-};
-const siblings = (node) => {
-  return Array.from(node.parentNode.children).filter((n) => n !== node);
-};
+const parent = (node) => node.parentNode;
+const children = (node) => node.children;
+const siblings = (node) =>
+  Array.from(node.parentNode.children).filter((n) => n !== node);
 const nextNode = (node) => {
   let x = node.nextSibling;
   while (x && x.nodeType === 3) {
@@ -212,7 +204,7 @@ const xu = {
   nextNode,
   prevNode,
   everyNode,
-  index
+  index,
 };
 
 export default xu;

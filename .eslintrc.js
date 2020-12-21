@@ -1,28 +1,40 @@
 module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
   env: {
     browser: true,
-    commonjs: true,
-    es6: true,
-    jest: true,
-    node: true
+    es2021: true,
+    node: true,
   },
+  extends: ['airbnb-base'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['@typescript-eslint'],
   rules: {
-    'jsx-a11y/href-no-hash': ['off'],
-    'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
-    'max-len': [
-      'warn',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
       {
-        code: 80,
-        tabWidth: 2,
-        comments: 80,
-        ignoreComments: false,
-        ignoreTrailingComments: true,
-        ignoreUrls: true,
-        ignoreStrings: true,
-        ignoreTemplateLiterals: true,
-        ignoreRegExpLiterals: true
-      }
-    ]
-  }
+        js: 'never',
+        ts: 'never',
+        jsx: 'never',
+        tsx: 'never',
+      },
+    ],
+    'max-len': [2, { code: 80, ignoreUrls: true, ignoreStrings: true }],
+    'implicit-arrow-linebreak': 0,
+    'arrow-body-style': ['error', 'as-needed'],
+    'newline-per-chained-call': 0,
+    'no-undef': 0,
+    'no-unused-vars': 0,
+    'import/prefer-default-export': 0,
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
 };
